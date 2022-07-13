@@ -4,18 +4,19 @@ using UnityEngine;
 
 using static Demon;
 
-public class Player : MonoBehaviour
+public class AI : MonoBehaviour
 {
     public GameObject demonPrefab;
     private Main mainController;
     private Grid grid;
+    
     private Demon demon;
 
     void Start()
     {
         mainController = GameObject.FindWithTag("GameController").GetComponent<Main>();
         grid = mainController.actualGrid;
-        demon = new Demon(demonPrefab, true, grid);
+        demon = new Demon(demonPrefab, false, grid);
     }
 
     // Update is called once per frame
@@ -28,15 +29,11 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
-        int horizontalAxis = (int)Input.GetAxis("Horizontal");
-        int verticalAxis = (int)Input.GetAxis("Vertical");
-        demon.updatePosition(horizontalAxis, verticalAxis);
+        //demon.updatePosition(horizontalAxis, verticalAxis);
     }
 
     void Attack()
     {
-        if (Input.GetButtonDown("Attack1")) { 
-            demon.attack();
-        } 
+           // demon.attack();
     }
 }

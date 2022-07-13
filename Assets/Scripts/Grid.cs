@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,8 +31,8 @@ public class Grid
                 } else {
                     prefab = enemyTilePrefab;
                 }
-
-                GridTile tile = new GridTile(prefab, tile_position, isPlayerTile);
+                DiscreteCoordinate positionInGrid = new DiscreteCoordinate(j, i);
+                GridTile tile = new GridTile(prefab, tile_position, isPlayerTile, positionInGrid);
                 row_grid.Add(tile);
             }
 
@@ -70,7 +69,7 @@ public class Grid
 
     public GridTile getTile(DiscreteCoordinate position){
         if (!verifyIsInRange(position)){
-            throw new ArgumentException("Grid Position requested is not in range.");
+            throw new System.ArgumentException("Grid Position requested is not in range.");
         }
         return grid[position.y][position.x];
     }

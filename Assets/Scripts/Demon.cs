@@ -16,27 +16,33 @@ public class Demon
     private int movementRefreshTimer;
     private int timeBetweenMovement;
 
+    private int timeBetweenAttacks;
+    private int attackRefreshTimer;
+
     private bool isPlayer;
     private DemonConfig config;
 
-    public Demon(GameObject prefab, bool isPlayer, Grid grid, int timeBetweenMovement)
+    public Demon(GameObject prefab, bool isPlayer, Grid grid)
     {
         this.grid = grid;
         movementRefreshTimer = 0;
-        this.timeBetweenMovement = timeBetweenMovement;
 
         this.isPlayer = isPlayer;
         if (isPlayer){
-            actPosition = new DiscreteCoordinate(0, 0); // y, x
+            setActPosition(new DiscreteCoordinate(0, 0)); // y, x
         } else {
-            actPosition = new DiscreteCoordinate(2, 5);
+            setActPosition(new DiscreteCoordinate(0, 3));
         }
-
         actDemon = ScriptableObject.Instantiate(prefab, grid.getTilePosition(actPosition), Quaternion.identity);
         this.config = this.actDemon.GetComponent<DemonConfig>();
+        this.config.actPosition = actPosition;
+        this.timeBetweenMovement = this.config.timeBetweenMovement;
+        this.timeBetweenAttacks = this.config.timeBetweenAttacks;
     }
 
+    public void generalUpdate(){
 
+    }
 
     public void updatePosition(int horizontalAxis, int verticalAxis)
     {
@@ -52,9 +58,10 @@ public class Demon
             }
             if (newPosition != null){
                 if (grid.verifyPosition(newPosition, true)){
-                    actPosition = newPosition;
+                    setActPosition(newPosition);
                     actDemon.transform.position = grid.getTilePosition(newPosition);
                     movementRefreshTimer = timeBetweenMovement;
+                    
                 }
             }
         }
@@ -65,12 +72,20 @@ public class Demon
         switch (this.config.attackType)
         {
             case AttackType.RowAttack: 
-            attack = new RowAttack(isPlayer, actPosition, grid, this.config.attackPrefab);
+            attack = new RowAttack(isPlayer, actPosition, grid, this.config.attackPrefab, this.config.damage);
             break;
 
             default: 
             return;
         }
+        //TODO: time to next attack
         attack.execute();
+    }
+
+    private void setActPosition(DiscreteCoordinate newPosition){
+        this.actPosition = newPosition;
+        if (this.config != null){
+            this.config.actPosition = newPosition;
+        }
     }
 }

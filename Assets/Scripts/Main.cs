@@ -5,14 +5,14 @@ using static Grid;
 
 public class Main : MonoBehaviour
 {
-    private Grid actualGrid;
+    public Grid actualGrid;
     public int gridHorizontal = 6;
     public int gridVertical = 3;
     public GameObject playerTilePrefab;
     public GameObject enemyTilePrefab;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         actualGrid = new Grid(gridHorizontal, gridVertical, -3, -1, 1, playerTilePrefab, enemyTilePrefab);
     }
@@ -21,9 +21,5 @@ public class Main : MonoBehaviour
     void Update()
     {
 
-    }
-
-    public Grid getActualGrid(){
-        return actualGrid;
     }
 }
