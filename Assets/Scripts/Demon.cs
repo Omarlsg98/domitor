@@ -4,6 +4,7 @@ using UnityEngine;
 
 using static Grid;
 using static GridTile;
+using static DiscreteCoordinate;
 
 public class Demon : ScriptableObject
 {
@@ -12,7 +13,7 @@ public class Demon : ScriptableObject
 
     private GameObject actDemon;
 
-    private int[] actPosition;
+    private DiscreteCoordinate actPosition;
     private Grid grid;
     private int movementRefreshTimer;
     private int timeBetweenMovement;
@@ -27,9 +28,9 @@ public class Demon : ScriptableObject
 
         this.isPlayer = isPlayer;
         if (isPlayer){
-            actPosition = new int[] {0, 0}; // y, x
+            actPosition = new DiscreteCoordinate(0, 0); // y, x
         } else {
-            actPosition = new int[] {2, 5};
+            actPosition = new DiscreteCoordinate(2, 5);
         }
 
         actDemon = Instantiate(prefab, grid.getTilePosition(actPosition), Quaternion.identity);
@@ -41,12 +42,12 @@ public class Demon : ScriptableObject
         if (movementRefreshTimer > 0){
             movementRefreshTimer -= 1;
         } else {
-            int [] newPosition = null;
+            DiscreteCoordinate newPosition = null;
             if (horizontalAxis == 1 | horizontalAxis == -1){
-                newPosition =  new int[] {actPosition[0], actPosition[1] + horizontalAxis};
+                newPosition =  new DiscreteCoordinate(actPosition.y, actPosition.x + horizontalAxis);
             }
             else if (verticalAxis == 1 | verticalAxis == -1){
-                newPosition =  new int[] {actPosition[0] + verticalAxis, actPosition[1]};
+                newPosition =  new DiscreteCoordinate(actPosition.y + verticalAxis, actPosition.x);
             }
             if (newPosition != null){
                 if (grid.verifyPosition(newPosition, true)){
@@ -59,6 +60,6 @@ public class Demon : ScriptableObject
     }
 
     public void attack(){
-        
+
     }
 }

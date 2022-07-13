@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using static GridTile;
+using static DiscreteCoordinate;
 
 public class Grid : MonoBehaviour
 {   
@@ -40,7 +41,9 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public bool verifyIsInRange(int y, int x){
+    public bool verifyIsInRange(DiscreteCoordinate position){
+        int y = position.y;
+        int x = position.x;
         if (y < 0 | x < 0 | y >= grid.Count){
             return false;
         }
@@ -50,23 +53,26 @@ public class Grid : MonoBehaviour
         return true;
     }
 
-    public bool verifyPosition(int [] position, bool isPlayer){
-        int y = position[0];
-        int x = position[1];
-        if (!verifyIsInRange(y, x)){
+    public bool verifyPosition(DiscreteCoordinate position, bool isPlayer){
+        int y = position.y;
+        int x = position.x;
+        if (!verifyIsInRange(position)){
             return false;
         }
-        GridTile actTile = grid[y][x];
+        GridTile actTile = getTile(position);
         return actTile.isPlayerTile == isPlayer & actTile.isEmpty;
     }
     
-    public Vector3 getTilePosition(int [] position){
-        int y = position[0];
-        int x = position[1];
-        if (!verifyIsInRange(y, x)){
+    public Vector3 getTilePosition(DiscreteCoordinate position){
+        GridTile actTile = getTile(position);
+        return actTile.getCoordinates();
+    }
+
+    private GridTile getTile(DiscreteCoordinate position){
+        if (!verifyIsInRange(position)){
             throw new ArgumentException("Grid Position requested is not in range.");
         }
-        return grid[y][x].getCoordinates();
+        return grid[position.y][position.x];
     }
 
 }

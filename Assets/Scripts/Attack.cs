@@ -14,10 +14,10 @@ public interface Attack
 public class RowAttack : Attack
 {
     private int damage;
-    private int [] tilesAffected;
-    private int [] actPosition;
+    private List<DiscreteCoordinate> tilesAffected;
+    private DiscreteCoordinate actPosition;
 
-    public RowAttack(int damage, int [] actPosition){
+    public RowAttack(int damage, DiscreteCoordinate actPosition){
         
     }
 
