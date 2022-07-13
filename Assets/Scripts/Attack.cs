@@ -30,6 +30,8 @@ public class AttackConfig {
     public GameObject prefab;
     public AttackType attackType;
 
+    public AudioClip attackMovementSound;
+
     public int range;
 }
 

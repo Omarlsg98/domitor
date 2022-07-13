@@ -6,18 +6,20 @@ using static Grid;
 using static DiscreteCoordinate;
 using static Attack;
 using static CoolDown;
+using static DemonSoundController;
+
 public class Demon : MonoBehaviour
 {
     public int maxLife = 100;
-    public int actualLife = 100;
+    private int actualLife = 100;
 
+    public DemonSoundController soundController;
     public List<AttackConfig> availableAttacks;
-    private List<Attack> attacksInProgress = new List<Attack>();
-
     public DiscreteCoordinate actPosition;
-    private Grid grid;
     public CoolDown movementCoolDown;
-
+    
+    private Grid grid;
+    private List<Attack> attacksInProgress = new List<Attack>();
     private bool isPlayer;
 
     public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition)
@@ -47,6 +49,7 @@ public class Demon : MonoBehaviour
                     this.actPosition = newPosition;
                     gameObject.transform.position = grid.getTilePosition(newPosition);
                     movementCoolDown.turnOnCooldown();
+                    soundController.reproduceMovement();
                 }
             }
         } else {
@@ -56,6 +59,7 @@ public class Demon : MonoBehaviour
 
     public void applyHit(int damage){
         this.actualLife -= damage;
+        soundController.reproduceDamage();
         if (this.actualLife <= 0){
             Destroy(gameObject);
         }
@@ -64,6 +68,7 @@ public class Demon : MonoBehaviour
     public void attack(AttackButton selector){
         AttackConfig atcConfig = getAttackConfig(selector);
         if (atcConfig.attackCoolDown.isReady()){
+            soundController.reproduceAttack();
             Attack attack = Attack.getAttackInstance(isPlayer, actPosition, grid, atcConfig);
             attacksInProgress.Add(attack);
             atcConfig.attackCoolDown.turnOnCooldown();
