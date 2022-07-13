@@ -66,7 +66,8 @@ MonoBehaviour:
     prefab: {fileID: 3581026735708057378, guid: 53bd7ecdaae6e4c459795ab36997e84f, type: 3}
     attackType: 1
     range: 3
-  timeBetweenMovement: 80
+  movementCoolDown:
+    timeToWait: 60
 --- !u!1 &4953625071096108824
 GameObject:
   m_ObjectHideFlags: 0

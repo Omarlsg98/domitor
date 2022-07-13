@@ -5,7 +5,7 @@ using UnityEngine;
 using static Grid;
 using static DiscreteCoordinate;
 using static Attack;
-
+using static CoolDown;
 public class Demon : MonoBehaviour
 {
     public int maxLife = 100;
@@ -16,16 +16,13 @@ public class Demon : MonoBehaviour
 
     public DiscreteCoordinate actPosition;
     private Grid grid;
-    private int movementRefreshTimer;
-    public int timeBetweenMovement = 90;
+    public CoolDown movementCoolDown;
 
     private bool isPlayer;
 
     public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition)
     {
         this.grid = grid;
-        movementRefreshTimer = 0;
-
         this.isPlayer = isPlayer;
         this.actPosition = actPosition; 
     }
@@ -37,9 +34,7 @@ public class Demon : MonoBehaviour
 
     public void updatePosition(int horizontalAxis, int verticalAxis)
     {
-        if (movementRefreshTimer > 0){
-            movementRefreshTimer -= 1;
-        } else {
+        if (movementCoolDown.isReady()){     
             DiscreteCoordinate newPosition = null;
             if (horizontalAxis == 1 | horizontalAxis == -1){
                 newPosition =  new DiscreteCoordinate(actPosition.y, actPosition.x + horizontalAxis);
@@ -51,10 +46,11 @@ public class Demon : MonoBehaviour
                 if (grid.verifyPosition(newPosition, true)){
                     this.actPosition = newPosition;
                     gameObject.transform.position = grid.getTilePosition(newPosition);
-                    movementRefreshTimer = timeBetweenMovement;
-                    
+                    movementCoolDown.turnOnCooldown();
                 }
             }
+        } else {
+            movementCoolDown.updateCoolDown();
         }
     }
 
