@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using static Demon;
+using static Attack;
 
 public class Player : MonoBehaviour
 {
@@ -15,13 +16,16 @@ public class Player : MonoBehaviour
     {
         mainController = GameObject.FindWithTag("GameController").GetComponent<Main>();
         grid = mainController.actualGrid;
-        demon = new Demon(demonPrefab, true, grid);
+
+        DiscreteCoordinate newPosition = new DiscreteCoordinate(0, 0);
+        GameObject demonGameObject = Instantiate(demonPrefab, grid.getTilePosition(newPosition), Quaternion.identity);
+        demon = demonGameObject.GetComponent<Demon>();
+        demon.setup(true, grid, newPosition);
     }
 
     // Update is called once per frame
     void Update()
     {   
-        demon.generalUpdate();
         Movement();
         Attack();
     }
@@ -36,7 +40,7 @@ public class Player : MonoBehaviour
     void Attack()
     {
         if (Input.GetButtonDown("Attack1")) { 
-            demon.attack();
+            demon.attack(AttackButton.Attack1);
         } 
     }
 }

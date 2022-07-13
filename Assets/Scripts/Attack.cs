@@ -10,6 +10,26 @@ public enum AttackType
     RowAttack 
 }
 
+public enum AttackButton
+{
+    Attack1,
+    Attack2,
+    Attack3,
+    Attack4
+}
+
+[System.Serializable]
+public class AttackConfig {
+    public AttackButton button;
+
+    public int damage = 10;
+    public int timeBetweenAttacks = 120;
+    public GameObject prefab;
+    public AttackType attackType;
+    
+    public int attackRefreshTimer;
+}
+
 public abstract class Attack
 {
     public abstract bool execute();
@@ -22,13 +42,15 @@ public class RowAttack : Attack
     private GameObject prefab;
     private bool isPlayer;
     private int damage;
+    private AttackConfig atcConfig;
 
-    public RowAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, GameObject prefab, int damage){
+    public RowAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, AttackConfig atcConfig){
         this.actPosition = actPosition;
         this.grid = grid;
-        this.prefab = prefab;
+        this.prefab = atcConfig.prefab;
         this.isPlayer = isPlayer;
-        this.damage = damage;
+        this.damage = atcConfig.damage;
+        this.atcConfig = atcConfig;
     }
 
     public override bool execute(){

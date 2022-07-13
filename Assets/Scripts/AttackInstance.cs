@@ -30,9 +30,9 @@ public class AttackInstance : MonoBehaviour
         GameObject[] demons = GameObject.FindGameObjectsWithTag("Demon");
         foreach (GameObject demon in demons)
         {
-            DemonConfig demonConfig = demon.GetComponent<DemonConfig>();
-            if (demonConfig.actPosition.Equals(this.actPosition)) {
-                demonConfig.applyHit(damage);
+            Demon demonComponent = demon.GetComponent<Demon>();
+            if (demonComponent.actPosition.Equals(this.actPosition)) {
+                demonComponent.applyHit(damage);
                 if (destroyOnHit){
                      Destroy(gameObject);
                 }

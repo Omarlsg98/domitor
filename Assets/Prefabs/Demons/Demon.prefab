@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4953625070631494638}
-  - component: {fileID: -4177642388792851476}
+  - component: {fileID: 8952287706809802575}
   m_Layer: 0
   m_Name: Demon
   m_TagString: Demon
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4177642388792851476
+--- !u!114 &8952287706809802575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,16 +42,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 4953625070631494639}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5a3b6364f1a8a64e9f6475f85969f05, type: 3}
+  m_Script: {fileID: 11500000, guid: 289e0ed10a30e1f4e9d5f63f726f6acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 100
   actualLife: 100
-  damage: 40
-  timeBetweenAttacks: 120
-  attackPrefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
-  attackType: 0
-  timeBetweenMovement: 90
+  availableAttacks:
+  - button: 0
+    damage: 40
+    timeBetweenAttacks: 150
+    prefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
+    attackType: 0
+    attackRefreshTimer: 0
+  timeBetweenMovement: 80
 --- !u!1 &4953625071096108824
 GameObject:
   m_ObjectHideFlags: 0

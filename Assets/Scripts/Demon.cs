@@ -4,43 +4,32 @@ using UnityEngine;
 
 using static Grid;
 using static DiscreteCoordinate;
-using static DemonConfig;
 using static Attack;
 
-public class Demon
+public class Demon : MonoBehaviour
 {
-    private GameObject actDemon;
+    public int maxLife = 100;
+    public int actualLife = 100;
 
-    private DiscreteCoordinate actPosition;
+    public List<AttackConfig> availableAttacks;
+
+    public DiscreteCoordinate actPosition;
     private Grid grid;
     private int movementRefreshTimer;
-    private int timeBetweenMovement;
-
-    private int timeBetweenAttacks;
-    private int attackRefreshTimer;
+    public int timeBetweenMovement = 90;
 
     private bool isPlayer;
-    private DemonConfig config;
 
-    public Demon(GameObject prefab, bool isPlayer, Grid grid)
+    public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition)
     {
         this.grid = grid;
         movementRefreshTimer = 0;
 
         this.isPlayer = isPlayer;
-        if (isPlayer){
-            setActPosition(new DiscreteCoordinate(0, 0)); // y, x
-        } else {
-            setActPosition(new DiscreteCoordinate(0, 3));
-        }
-        actDemon = ScriptableObject.Instantiate(prefab, grid.getTilePosition(actPosition), Quaternion.identity);
-        this.config = this.actDemon.GetComponent<DemonConfig>();
-        this.config.actPosition = actPosition;
-        this.timeBetweenMovement = this.config.timeBetweenMovement;
-        this.timeBetweenAttacks = this.config.timeBetweenAttacks;
+        this.actPosition = actPosition; 
     }
 
-    public void generalUpdate(){
+    void Update(){
 
     }
 
@@ -58,8 +47,8 @@ public class Demon
             }
             if (newPosition != null){
                 if (grid.verifyPosition(newPosition, true)){
-                    setActPosition(newPosition);
-                    actDemon.transform.position = grid.getTilePosition(newPosition);
+                    this.actPosition = newPosition;
+                    gameObject.transform.position = grid.getTilePosition(newPosition);
                     movementRefreshTimer = timeBetweenMovement;
                     
                 }
@@ -67,12 +56,21 @@ public class Demon
         }
     }
 
-    public void attack(){
+    public void applyHit(int damage){
+        this.actualLife -= damage;
+        if (this.actualLife <= 0){
+            Destroy(gameObject);
+        }
+    }
+    
+    public void attack(AttackButton selector){
+        AttackConfig atcConfig = getAttackConfig(selector);
+
         Attack attack;
-        switch (this.config.attackType)
+        switch (atcConfig.attackType)
         {
             case AttackType.RowAttack: 
-            attack = new RowAttack(isPlayer, actPosition, grid, this.config.attackPrefab, this.config.damage);
+            attack = new RowAttack(isPlayer, actPosition, grid, atcConfig);
             break;
 
             default: 
@@ -82,10 +80,13 @@ public class Demon
         attack.execute();
     }
 
-    private void setActPosition(DiscreteCoordinate newPosition){
-        this.actPosition = newPosition;
-        if (this.config != null){
-            this.config.actPosition = newPosition;
+    private AttackConfig getAttackConfig(AttackButton selector){
+        foreach(AttackConfig atcConfig in availableAttacks){
+            if (atcConfig.button == selector) {
+                return atcConfig;
+            }
         }
+        return null;
     }
+    
 }

@@ -10,7 +10,7 @@ public class Grid
     private List<List<GridTile>> grid;
 
     public Grid(int horizontal_size, int vertical_size, float min_x, float min_y, 
-                int step, GameObject playerTilePrefab, GameObject enemyTilePrefab)
+                float step, GameObject playerTilePrefab, GameObject enemyTilePrefab)
     {
         grid = new List<List<GridTile>>();
 

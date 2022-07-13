@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.7451262
+  orthographic size: 2.1069977
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -200,7 +200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: 0, z: -10}
+  m_LocalPosition: {x: -0.02, y: 0.37, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -328,6 +328,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridHorizontal: 6
   gridVertical: 3
+  gridMinX: -3
+  gridMinY: -1
+  gridStep: 1.2
   playerTilePrefab: {fileID: 6487471540204908016, guid: c6cdae4c5752d87469e868905215d1fe, type: 3}
   enemyTilePrefab: {fileID: 2178444279794039846, guid: be31e8d45f3a38240b414a9b41ffee13, type: 3}
 --- !u!4 &1843659235

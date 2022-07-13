@@ -16,13 +16,16 @@ public class AI : MonoBehaviour
     {
         mainController = GameObject.FindWithTag("GameController").GetComponent<Main>();
         grid = mainController.actualGrid;
-        demon = new Demon(demonPrefab, false, grid);
+
+        DiscreteCoordinate newPosition = new DiscreteCoordinate(0, 3);
+        GameObject demonGameObject = Instantiate(demonPrefab, grid.getTilePosition(newPosition), Quaternion.identity);
+        demon = demonGameObject.GetComponent<Demon>();
+        demon.setup(false, grid, newPosition);
     }
 
     // Update is called once per frame
     void Update()
     {   
-        demon.generalUpdate();
         Movement();
         Attack();
     }
@@ -34,6 +37,6 @@ public class AI : MonoBehaviour
 
     void Attack()
     {
-           // demon.attack();
+        // demon.attack();
     }
 }
