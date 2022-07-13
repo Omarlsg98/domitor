@@ -8,7 +8,8 @@ using static CoolDown;
 
 public enum AttackType
 {
-    RowAttack 
+    RowAttack,
+    RangeAttack
 }
 
 public enum AttackButton
@@ -28,27 +29,42 @@ public class AttackConfig {
     public CoolDown spawnCoolDown;
     public GameObject prefab;
     public AttackType attackType;
+
+    public int range;
 }
 
 public abstract class Attack
 {
-    public bool isFinished = false;
-
+    protected bool isFinished = false;
     public abstract bool execute();
+
+    public static Attack getAttackInstance(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, AttackConfig atcConfig){
+        switch (atcConfig.attackType)
+        {
+            case AttackType.RowAttack: 
+            return new RowAttack(isPlayer, actPosition, grid, atcConfig);
+
+            case AttackType.RangeAttack: 
+            return new RangeAttack(isPlayer, actPosition, grid, atcConfig);
+
+            default: 
+            return null;
+        }
+    }
 }
 
-public class RowAttack : Attack
+public abstract class SimpleAttack : Attack
 {
-    private DiscreteCoordinate actPosition;
-    private Grid grid;
-    private GameObject prefab;
-    private bool isPlayer;
-    private int damage;
-    private AttackConfig atcConfig;
+    protected DiscreteCoordinate actPosition;
+    protected Grid grid;
+    protected GameObject prefab;
+    protected bool isPlayer;
+    protected int damage;
+    protected AttackConfig atcConfig;
 
-    private int step;
+    protected int step;
 
-    public RowAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, AttackConfig atcConfig){
+    public SimpleAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, AttackConfig atcConfig){
         this.actPosition = actPosition;
         this.grid = grid;
         this.prefab = atcConfig.prefab;
@@ -61,7 +77,7 @@ public class RowAttack : Attack
     public override bool execute(){
         atcConfig.spawnCoolDown.updateCoolDown();
         if (atcConfig.spawnCoolDown.isReady()){
-            List<DiscreteCoordinate> attacksCoords = rowGenerator(this.step);
+            List<DiscreteCoordinate> attacksCoords = attackCoordinatesGenerator(this.step);
             spawnAttacks(attacksCoords);
             atcConfig.spawnCoolDown.turnOnCooldown();
             this.step += 1;
@@ -69,7 +85,25 @@ public class RowAttack : Attack
         return this.isFinished;
     }
 
-    private List<DiscreteCoordinate> rowGenerator(int step){
+    private void spawnAttacks(List<DiscreteCoordinate> coords){
+        foreach(DiscreteCoordinate coord in coords){
+            GameObject attack = ScriptableObject.Instantiate(prefab, grid.getTile(coord).getTransform());
+            attack.GetComponent<AttackInstance>().actPosition = coord;
+            attack.GetComponent<AttackInstance>().damage = damage;
+        }
+    }
+
+    protected abstract List<DiscreteCoordinate> attackCoordinatesGenerator(int step);
+}
+
+public class RowAttack : SimpleAttack
+{
+    public RowAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, AttackConfig atcConfig) :
+                 base(isPlayer, actPosition, grid, atcConfig)    
+    {
+    }
+
+    protected override List<DiscreteCoordinate> attackCoordinatesGenerator(int step){
         List<DiscreteCoordinate> result = new List<DiscreteCoordinate>();
         int horizontalGridSize = grid.getHorizontalSize(actPosition.y);
         int enemyStartX = grid.getEnemyStartX(actPosition.y);
@@ -83,12 +117,25 @@ public class RowAttack : Attack
         }
         return result;
     }
+}
 
-    private void spawnAttacks(List<DiscreteCoordinate> coords){
-        foreach(DiscreteCoordinate coord in coords){
-            GameObject attack = ScriptableObject.Instantiate(prefab, grid.getTile(coord).getTransform());
-            attack.GetComponent<AttackInstance>().actPosition = coord;
-            attack.GetComponent<AttackInstance>().damage = damage;
-        }
+public class RangeAttack : SimpleAttack
+{
+    public RangeAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, AttackConfig atcConfig) :
+                 base(isPlayer, actPosition, grid, atcConfig)    
+    {
+    }
+
+    protected override List<DiscreteCoordinate> attackCoordinatesGenerator(int step){
+        List<DiscreteCoordinate> result = new List<DiscreteCoordinate>();
+        int horizontalGridSize = grid.getHorizontalSize(actPosition.y);
+        int enemyStartX = grid.getEnemyStartX(actPosition.y);
+    
+        int new_x = isPlayer? actPosition.x + atcConfig.range : actPosition.x - atcConfig.range;
+        DiscreteCoordinate coord = new DiscreteCoordinate(actPosition.y, new_x);
+        result.Add(coord);
+        this.isFinished = true; 
+    
+        return result;
     }
 }

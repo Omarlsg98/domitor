@@ -41,6 +41,15 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Attack1")) { 
             demon.attack(AttackButton.Attack1);
-        } 
+        }
+        if (Input.GetButtonDown("Attack2")) { 
+            demon.attack(AttackButton.Attack2);
+        }
+        if (Input.GetButtonDown("Attack3")) { 
+            demon.attack(AttackButton.Attack3);
+        }
+        if (Input.GetButtonDown("Attack4")) { 
+            demon.attack(AttackButton.Attack4);
+        }
     }
 }

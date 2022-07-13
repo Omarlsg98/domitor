@@ -68,16 +68,7 @@ public class Demon : MonoBehaviour
     public void attack(AttackButton selector){
         AttackConfig atcConfig = getAttackConfig(selector);
         if (atcConfig.attackCoolDown.isReady()){
-            Attack attack;
-            switch (atcConfig.attackType)
-            {
-                case AttackType.RowAttack: 
-                attack = new RowAttack(isPlayer, actPosition, grid, atcConfig);
-                break;
-
-                default: 
-                return;
-            }
+            Attack attack = Attack.getAttackInstance(isPlayer, actPosition, grid, atcConfig);
             attacksInProgress.Add(attack);
             atcConfig.attackCoolDown.turnOnCooldown();
         }

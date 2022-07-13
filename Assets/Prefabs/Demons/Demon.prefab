@@ -56,6 +56,16 @@ MonoBehaviour:
       timeToWait: 10
     prefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
     attackType: 0
+    range: 0
+  - button: 1
+    damage: 100
+    attackCoolDown:
+      timeToWait: 200
+    spawnCoolDown:
+      timeToWait: 10
+    prefab: {fileID: 3581026735708057378, guid: 53bd7ecdaae6e4c459795ab36997e84f, type: 3}
+    attackType: 1
+    range: 3
   timeBetweenMovement: 80
 --- !u!1 &4953625071096108824
 GameObject:
