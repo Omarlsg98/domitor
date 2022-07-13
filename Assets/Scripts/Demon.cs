@@ -12,6 +12,7 @@ public class Demon : MonoBehaviour
     public int actualLife = 100;
 
     public List<AttackConfig> availableAttacks;
+    private List<Attack> attacksInProgress = new List<Attack>();
 
     public DiscreteCoordinate actPosition;
     private Grid grid;
@@ -30,7 +31,8 @@ public class Demon : MonoBehaviour
     }
 
     void Update(){
-
+        updateAllAvailableAttacks();
+        executeAllAttacksInProgress();
     }
 
     public void updatePosition(int horizontalAxis, int verticalAxis)
@@ -65,19 +67,20 @@ public class Demon : MonoBehaviour
     
     public void attack(AttackButton selector){
         AttackConfig atcConfig = getAttackConfig(selector);
+        if (atcConfig.attackCoolDown.isReady()){
+            Attack attack;
+            switch (atcConfig.attackType)
+            {
+                case AttackType.RowAttack: 
+                attack = new RowAttack(isPlayer, actPosition, grid, atcConfig);
+                break;
 
-        Attack attack;
-        switch (atcConfig.attackType)
-        {
-            case AttackType.RowAttack: 
-            attack = new RowAttack(isPlayer, actPosition, grid, atcConfig);
-            break;
-
-            default: 
-            return;
+                default: 
+                return;
+            }
+            attacksInProgress.Add(attack);
+            atcConfig.attackCoolDown.turnOnCooldown();
         }
-        //TODO: time to next attack
-        attack.execute();
     }
 
     private AttackConfig getAttackConfig(AttackButton selector){
@@ -89,4 +92,23 @@ public class Demon : MonoBehaviour
         return null;
     }
     
+    private void updateAllAvailableAttacks(){
+        foreach(AttackConfig atcConfig in availableAttacks){
+            atcConfig.attackCoolDown.updateCoolDown();
+        }
+    }
+
+    private void executeAllAttacksInProgress(){
+        List<int> toDelete = new List<int>();
+        for (int i = 0; i < attacksInProgress.Count; i++){
+            Attack attack = attacksInProgress[i];
+            if(attack.execute()){
+                toDelete.Add(i);
+            }
+        }
+
+        foreach(int index in toDelete){
+            attacksInProgress.RemoveAt(index);
+        }
+    }
 }

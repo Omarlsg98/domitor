@@ -50,10 +50,12 @@ MonoBehaviour:
   availableAttacks:
   - button: 0
     damage: 40
-    timeBetweenAttacks: 150
+    attackCoolDown:
+      timeToWait: 120
+    spawnCoolDown:
+      timeToWait: 10
     prefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
     attackType: 0
-    attackRefreshTimer: 0
   timeBetweenMovement: 80
 --- !u!1 &4953625071096108824
 GameObject:
