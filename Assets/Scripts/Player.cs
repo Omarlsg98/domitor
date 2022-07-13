@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
+        Attack();
     }
 
     void Movement()
@@ -31,5 +32,12 @@ public class Player : MonoBehaviour
         int horizontalAxis = (int)Input.GetAxis("Horizontal");
         int verticalAxis = (int)Input.GetAxis("Vertical");
         demon.updatePosition(horizontalAxis, verticalAxis);
+    }
+
+    void Attack()
+    {
+        if (Input.GetButtonDown("Attack1")) { 
+            demon.attack();
+        } 
     }
 }

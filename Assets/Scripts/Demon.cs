@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using static Grid;
-using static GridTile;
 using static DiscreteCoordinate;
+using static DemonConfig;
+using static Attack;
 
 public class Demon
 {
-    public int maxLife = 100;
-    public int actualLife = 100;
-
     private GameObject actDemon;
 
     private DiscreteCoordinate actPosition;
@@ -19,6 +17,7 @@ public class Demon
     private int timeBetweenMovement;
 
     private bool isPlayer;
+    private DemonConfig config;
 
     public Demon(GameObject prefab, bool isPlayer, Grid grid, int timeBetweenMovement)
     {
@@ -34,7 +33,9 @@ public class Demon
         }
 
         actDemon = ScriptableObject.Instantiate(prefab, grid.getTilePosition(actPosition), Quaternion.identity);
+        this.config = this.actDemon.GetComponent<DemonConfig>();
     }
+
 
 
     public void updatePosition(int horizontalAxis, int verticalAxis)
@@ -60,6 +61,16 @@ public class Demon
     }
 
     public void attack(){
+        Attack attack;
+        switch (this.config.attackType)
+        {
+            case AttackType.RowAttack: 
+            attack = new RowAttack(isPlayer, actPosition, grid, this.config.attackPrefab);
+            break;
 
+            default: 
+            return;
+        }
+        attack.execute();
     }
 }

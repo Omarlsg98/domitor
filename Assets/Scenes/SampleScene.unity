@@ -238,7 +238,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   demonPrefab: {fileID: 4953625070631494639, guid: ba9519df11902f4439f0e6542754a4e3, type: 3}
   timeBetweenMovement: 90
-  demon: {fileID: 0}
 --- !u!4 &1644764240
 Transform:
   m_ObjectHideFlags: 0
@@ -283,6 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d364affdf1e2b94a8639d887f6880ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridHorizontal: 6
+  gridVertical: 3
   playerTilePrefab: {fileID: 6487471540204908016, guid: c6cdae4c5752d87469e868905215d1fe, type: 3}
   enemyTilePrefab: {fileID: 2178444279794039846, guid: be31e8d45f3a38240b414a9b41ffee13, type: 3}
 --- !u!4 &1843659235

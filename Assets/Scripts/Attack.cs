@@ -6,22 +6,39 @@ using UnityEngine;
 using static Grid;
 using static GridTile;
 
-public interface Attack
+public enum AttackType
 {
-    bool execute();
+    RowAttack 
+}
+
+public abstract class Attack : MonoBehaviour
+{
+    public abstract bool execute();
 }
 
 public class RowAttack : Attack
 {
-    private int damage;
-    private List<DiscreteCoordinate> tilesAffected;
     private DiscreteCoordinate actPosition;
+    private Grid grid;
+    private GameObject prefab;
+    private bool isPlayer;
 
-    public RowAttack(int damage, DiscreteCoordinate actPosition){
-        
+    public RowAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, GameObject prefab){
+        this.actPosition = actPosition;
+        this.grid = grid;
+        this.prefab = prefab;
+        this.isPlayer = isPlayer;
     }
 
-    public bool execute(){
+    public override bool execute(){
+        int horizontalGridSize = grid.getHorizontalSize(actPosition.y);
+        int enemyStartX = grid.getEnemyStartX(actPosition.y);
+        for (int i = enemyStartX; i < horizontalGridSize; i++) 
+        {
+            int new_x = isPlayer? i : (enemyStartX - i);
+            DiscreteCoordinate coord = new DiscreteCoordinate(actPosition.y, new_x);
+            GameObject attack = ScriptableObject.Instantiate(prefab, grid.getTile(coord).getTransform());
+        }
         return true;
     }
 }

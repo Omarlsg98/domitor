@@ -68,11 +68,22 @@ public class Grid
         return actTile.getCoordinates();
     }
 
-    private GridTile getTile(DiscreteCoordinate position){
+    public GridTile getTile(DiscreteCoordinate position){
         if (!verifyIsInRange(position)){
             throw new ArgumentException("Grid Position requested is not in range.");
         }
         return grid[position.y][position.x];
     }
 
+    public int getHorizontalSize(int y){
+        return grid[y].Count;
+    }
+
+    public int getVerticalSize(){
+        return grid.Count;
+    }
+
+    public int getEnemyStartX(int y){
+        return ((int)grid[0].Count/2);
+    }
 }

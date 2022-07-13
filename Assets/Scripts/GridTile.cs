@@ -17,4 +17,7 @@ public class GridTile
     public Vector3 getCoordinates() {
         return tile.transform.position;
     }
+    public Transform getTransform(){
+        return tile.transform;
+    }
 }
