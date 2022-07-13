@@ -6,7 +6,7 @@ using UnityEngine;
 using static GridTile;
 using static DiscreteCoordinate;
 
-public class Grid : MonoBehaviour
+public class Grid
 {   
     private List<List<GridTile>> grid;
 

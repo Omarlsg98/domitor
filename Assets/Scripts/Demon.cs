@@ -6,7 +6,7 @@ using static Grid;
 using static GridTile;
 using static DiscreteCoordinate;
 
-public class Demon : ScriptableObject
+public class Demon
 {
     public int maxLife = 100;
     public int actualLife = 100;
@@ -33,7 +33,7 @@ public class Demon : ScriptableObject
             actPosition = new DiscreteCoordinate(2, 5);
         }
 
-        actDemon = Instantiate(prefab, grid.getTilePosition(actPosition), Quaternion.identity);
+        actDemon = ScriptableObject.Instantiate(prefab, grid.getTilePosition(actPosition), Quaternion.identity);
     }
 
 
