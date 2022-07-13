@@ -18,10 +18,20 @@ public class Demon : MonoBehaviour
     public DiscreteCoordinate actPosition;
     public CoolDown movementCoolDown;
     
+    private AudioSource audioSource;
+    private Animator animator;
     private Grid grid;
     private List<Attack> attacksInProgress = new List<Attack>();
     private bool isPlayer;
 
+    void Start(){
+        GameObject capsuleChild = gameObject.transform.GetChild(0).gameObject;
+        animator = capsuleChild.GetComponent<Animator>();
+
+        audioSource = gameObject.GetComponent<AudioSource>();
+        soundController.setAudioSource(audioSource);
+    }
+    
     public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition)
     {
         this.grid = grid;
@@ -60,6 +70,7 @@ public class Demon : MonoBehaviour
     public void applyHit(int damage){
         this.actualLife -= damage;
         soundController.reproduceDamage();
+        animateDamage();
         if (this.actualLife <= 0){
             Destroy(gameObject);
         }
@@ -69,6 +80,7 @@ public class Demon : MonoBehaviour
         AttackConfig atcConfig = getAttackConfig(selector);
         if (atcConfig.attackCoolDown.isReady()){
             soundController.reproduceAttack();
+            animateAttack();
             Attack attack = Attack.getAttackInstance(isPlayer, actPosition, grid, atcConfig);
             attacksInProgress.Add(attack);
             atcConfig.attackCoolDown.turnOnCooldown();
@@ -102,5 +114,13 @@ public class Demon : MonoBehaviour
         foreach(int index in toDelete){
             attacksInProgress.RemoveAt(index);
         }
+    }
+
+    private void animateAttack(){
+        animator.SetTrigger("Attack01");
+    }
+
+    private void animateDamage(){
+        animator.SetTrigger("Hurt");
     }
 }

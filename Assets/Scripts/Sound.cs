@@ -3,10 +3,14 @@ using UnityEngine;
 [System.Serializable]
 public class DemonSoundController
 {
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     public AudioClip damageAudio;
     public AudioClip movementAudio;
     public AudioClip attackAudio;
+
+    public void setAudioSource(AudioSource audioSource){
+        this.audioSource = audioSource;
+    }
 
     public void reproduceAttack(){
         reproduceSound(attackAudio);
