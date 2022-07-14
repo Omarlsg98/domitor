@@ -8,6 +8,7 @@ using static Demon;
 public class Main : MonoBehaviour
 {
     public Grid actualGrid;
+    public float difficultyFactor = 0.5f;
     public int gridHorizontal = 6;
     public int gridVertical = 3;
     public float gridMinX = -3.0f;

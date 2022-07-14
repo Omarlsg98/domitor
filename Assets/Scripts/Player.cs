@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
         DiscreteCoordinate newPosition = new DiscreteCoordinate(0, 0);
         GameObject demonGameObject = Instantiate(demonPrefab, grid.getTilePosition(newPosition), Quaternion.identity);
         demon = demonGameObject.GetComponent<Demon>();
-        demon.setup(true, grid, newPosition);
+        demon.setup(true, grid, newPosition, mainController.difficultyFactor);
         
         mainController.player = demon;
     }

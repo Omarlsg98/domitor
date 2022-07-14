@@ -40,7 +40,7 @@ public class AI : MonoBehaviour
             DiscreteCoordinate newPosition = grid.generateRandomCoordinate(false, true);
             GameObject demonGameObject = Instantiate(demonPrefab, grid.getTilePosition(newPosition), Quaternion.identity);
             Demon newDemon = demonGameObject.GetComponent<Demon>();
-            newDemon.setup(false, grid, newPosition);
+            newDemon.setup(false, grid, newPosition, mainController.difficultyFactor);
 
             AIInstance fullNewDemon = new AIStalker(newDemon, mainController.player);
             demons.Add(fullNewDemon);

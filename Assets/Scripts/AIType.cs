@@ -32,7 +32,7 @@ public abstract class AIInstance{
     public void Attack()
     {
         AttackButton attackBtn = getAttackButton();
-        if (attackBtn != AttackButton.None) { 
+        if (attackBtn != AttackButton.None && player.isAlive()) { 
             demon.attack(attackBtn);
         }
     }

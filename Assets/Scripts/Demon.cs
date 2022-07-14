@@ -23,6 +23,7 @@ public class Demon : MonoBehaviour
     private Grid grid;
     private List<Attack> attacksInProgress = new List<Attack>();
     private bool isPlayer;
+    private float difficultyFactor;
 
     void Start(){
         GameObject capsuleChild = gameObject.transform.GetChild(0).gameObject;
@@ -30,18 +31,18 @@ public class Demon : MonoBehaviour
 
         audioSource = gameObject.GetComponent<AudioSource>();
         soundController.setAudioSource(audioSource);
-        actualLife = maxLife;
         if (isPlayer){
             capsuleChild.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
     
-    public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition)
+    public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition, float difficultyFactor)
     {
         this.grid = grid;
         this.isPlayer = isPlayer;
         grid.getTile(actPosition).isEmpty = false;
-        this.actPosition = actPosition; 
+        this.actPosition = actPosition;
+        this.difficultyFactor = difficultyFactor;
         actualLife = maxLife;
     }
 
@@ -52,7 +53,7 @@ public class Demon : MonoBehaviour
 
     public int updatePosition(int horizontalAxis, int verticalAxis)
     {
-        if (movementCoolDown.isReady()){     
+        if (movementCoolDown.isReady() && isAlive()){     
             DiscreteCoordinate newPosition = null;
             if (horizontalAxis == 1 | horizontalAxis == -1){
                 newPosition =  new DiscreteCoordinate(actPosition.y, actPosition.x + horizontalAxis);
@@ -80,7 +81,7 @@ public class Demon : MonoBehaviour
     }
 
     public void applyHit(int damage){
-        this.actualLife -= damage;
+        this.actualLife -= isPlayer? (int) (damage * difficultyFactor) : damage;
         soundController.reproduceDamage();
         animateDamage();
         if (!isAlive()){
@@ -95,7 +96,7 @@ public class Demon : MonoBehaviour
     
     public void attack(AttackButton selector){
         AttackConfig atcConfig = getAttackConfig(selector);
-        if (atcConfig.attackCoolDown.isReady() && atcConfig.isUsable()){
+        if (atcConfig.attackCoolDown.isReady() && atcConfig.isUsable() && isAlive()){
             soundController.reproduceAttack();
             animateAttack();
             atcConfig.addUsage();
