@@ -179,7 +179,7 @@ Animator:
   m_GameObject: {fileID: 1422460827853288126}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 341dfe64204a6d4438c8b172830556ef, type: 2}
+  m_Controller: {fileID: 9100000, guid: e6953eeed4077a941a4af55ad3196cf0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   preDamageCoolDown:
     timeToWait: 300
   timeToDisappear: 10
-  destroyOnHit: 1
+  destroyOnHit: 0
 --- !u!1 &4964922986630239692
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,7 +252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5713641980724914876}
   - component: {fileID: 671749938265282513}
-  - component: {fileID: 3671728919884607402}
+  - component: {fileID: 8874265857828697339}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -270,7 +270,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8166737579722805262}
   m_Father: {fileID: 8255229919375280438}
@@ -328,7 +328,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3671728919884607402
+--- !u!95 &8874265857828697339
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ Animator:
   m_GameObject: {fileID: 4964922986630239692}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6ef45c170b869fb468437501a98151c6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6025011f6d83a8146bf0e785d45b13e5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -404,7 +404,7 @@ ParticleSystem:
   startDelay:
     serializedVersion: 2
     minMaxState: 0
-    scalar: 0.38
+    scalar: 0.58
     minScalar: 0
     maxCurve:
       serializedVersion: 2
@@ -571,7 +571,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.21568629, g: 0.21176472, b: 0.24705884, a: 0.5294118}
+      maxColor: {r: 1, g: 1, b: 1, a: 0.78431374}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1096,7 +1096,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0.01
     radius:
-      value: 0.0001
+      value: 0.2
       mode: 0
       spread: 0
       speed:
@@ -1215,7 +1215,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2

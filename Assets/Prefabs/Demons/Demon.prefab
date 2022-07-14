@@ -69,7 +69,7 @@ MonoBehaviour:
     maxUsages: -1
     damage: 100
     castCoolDown:
-      timeToWait: 85
+      timeToWait: 80
     attackCoolDown:
       timeToWait: 200
     spawnCoolDown:
