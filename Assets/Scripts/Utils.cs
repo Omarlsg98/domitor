@@ -3,17 +3,17 @@ using UnityEngine;
 [System.Serializable]
 public class CoolDown
 {
-    public int timeToWait;
-    private int actualTimeLeft = 0;
+    public float timeToWait;
+    private float actualTimeLeft = 0;
 
     public void updateCoolDown(){
         if (!isReady()){
-            actualTimeLeft -= 1;
+            actualTimeLeft -= Time.deltaTime;
         }
     }
 
     public void turnOnCooldown(){
-        actualTimeLeft = timeToWait;
+        actualTimeLeft = (float)timeToWait;
     }
 
     public bool isReady(){

@@ -298,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   demonPrefab: {fileID: 4953625070631494639, guid: ba9519df11902f4439f0e6542754a4e3, type: 3}
   maxDemons: 3
-  demonSpawnProbability: 0.001
+  demonSpawnProbability: 0.00051
 --- !u!1 &1843659233
 GameObject:
   m_ObjectHideFlags: 0

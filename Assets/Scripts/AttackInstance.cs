@@ -9,7 +9,7 @@ public class AttackInstance : MonoBehaviour
     public DiscreteCoordinate actPosition;
     public CoolDown damageCoolDown;
     public CoolDown preDamageCoolDown;
-    public int timeToDisappear = 10;
+    public CoolDown timeToDisappear;
     public bool destroyOnHit = true;
 
     private int damage;
@@ -24,8 +24,8 @@ public class AttackInstance : MonoBehaviour
         if (preDamageCoolDown.isReady()){
             checkHitWithDemons();
 
-            timeToDisappear -= 1;
-            if (timeToDisappear <= 0){
+            timeToDisappear.updateCoolDown();
+            if (timeToDisappear.isReady()){
                 Destroy(gameObject);
             }
         }
@@ -34,6 +34,7 @@ public class AttackInstance : MonoBehaviour
     public void setDamage(int damage){
         this.damage = damage;
         preDamageCoolDown.turnOnCooldown();
+        timeToDisappear.turnOnCooldown();
     }
 
     private void checkHitWithDemons(){
