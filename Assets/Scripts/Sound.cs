@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class MyAudioClip{
     public AudioClip audio;
-    public int secondsToWait;
+    public float secondsToWait;
 }
 
 public abstract class SoundController
@@ -14,8 +14,12 @@ public abstract class SoundController
     private Main mainController;
 
     public void setAudioSource(AudioSource audioSource){
-        this.audioSource = audioSource;
         mainController = GameObject.FindWithTag("GameController").GetComponent<Main>();
+        if (audioSource == null){
+            this.audioSource = mainController.gameObject.GetComponent<AudioSource>();
+        }else {
+            this.audioSource = audioSource;
+        }
     }
     
     protected void reproduceSound(MyAudioClip clip){
@@ -24,6 +28,7 @@ public abstract class SoundController
 
     private IEnumerator _reproduceSound(MyAudioClip clip){
         yield return new WaitForSeconds(clip.secondsToWait);
+        audioSource.pitch = Random.Range(0.1f, 1.0f);
         audioSource.PlayOneShot(clip.audio);
     }
 }
@@ -54,5 +59,16 @@ public class DemonSoundController : SoundController
 
     public void reproduceDamage(){
         reproduceSound(damageAudio);
+    }
+}
+
+[System.Serializable]
+public class AttackSoundController : SoundController
+{
+    public List<MyAudioClip> attackSounds;
+   
+    public void reproduceAttack(){
+        int randNumber = Random.Range(0, attackSounds.Count);
+        reproduceSound(attackSounds[randNumber]);
     }
 }

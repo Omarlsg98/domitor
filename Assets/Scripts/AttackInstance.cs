@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using static DiscreteCoordinate;
+using static AttackSoundController;
 
 public class AttackInstance : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class AttackInstance : MonoBehaviour
     public CoolDown preDamageCoolDown;
     public CoolDown timeToDisappear;
     public bool destroyOnHit = true;
+    public AttackSoundController soundController;
 
     private int damage;
 
@@ -33,6 +35,8 @@ public class AttackInstance : MonoBehaviour
 
     public void setDamage(int damage){
         this.damage = damage;
+        soundController.setAudioSource(null);
+        soundController.reproduceAttack();
         preDamageCoolDown.turnOnCooldown();
         timeToDisappear.turnOnCooldown();
     }

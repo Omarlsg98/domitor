@@ -97,10 +97,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f2342ec31988134bbccd671ac36567b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageCoolDown:
-    timeToWait: 10
+  continuousDamageCoolDown:
+    timeToWait: 0
   preDamageCoolDown:
     timeToWait: 0
   timeToDisappear:
     timeToWait: 0.1
   destroyOnHit: 1
+  soundController:
+    attackSounds:
+    - audio: {fileID: 8300000, guid: 50e3c26d4b6d3c043bf6c476d55f5da4, type: 3}
+      secondsToWait: 0
+    - audio: {fileID: 8300000, guid: 1f6d5263a50d02a4eb83ea1cfb9fe890, type: 3}
+      secondsToWait: 0

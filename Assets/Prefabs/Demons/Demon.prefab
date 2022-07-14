@@ -77,7 +77,7 @@ MonoBehaviour:
     castCoolDown:
       timeToWait: 0.4
     attackCoolDown:
-      timeToWait: 3
+      timeToWait: 1
     spawnCoolDown:
       timeToWait: 1
     prefab: {fileID: 3581026735708057378, guid: 74144f9e2c9fd3c4cbccf1ef0f4ed8bc, type: 3}
