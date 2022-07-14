@@ -23,13 +23,16 @@ public abstract class SoundController
     }
     
     protected void reproduceSound(MyAudioClip clip){
-        mainController.StartCoroutine(_reproduceSound(clip));
+        if(mainController != null)
+            mainController.StartCoroutine(_reproduceSound(clip));
     }
 
     private IEnumerator _reproduceSound(MyAudioClip clip){
         yield return new WaitForSeconds(clip.secondsToWait);
-        audioSource.pitch = Random.Range(0.1f, 1.0f);
-        audioSource.PlayOneShot(clip.audio);
+        if (audioSource != null){
+            audioSource.pitch = Random.Range(0.1f, 1.0f);
+            audioSource.PlayOneShot(clip.audio);
+        }
     }
 }
 
