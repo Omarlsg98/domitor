@@ -52,26 +52,26 @@ MonoBehaviour:
     movementAudio: {fileID: 8300000, guid: 35be27ddfac5ac54593256a3f483dbe0, type: 3}
     attackAudio: {fileID: 8300000, guid: 164be4cd463c9a640bc681c41526287f, type: 3}
   availableAttacks:
-  - button: 0
+  - button: 1
     maxUsages: -1
     damage: 40
     castCoolDown:
       timeToWait: 150
     attackCoolDown:
-      timeToWait: 220
+      timeToWait: 264
     spawnCoolDown:
       timeToWait: 10
     prefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
     attackType: 0
     attackMovementSound: {fileID: 0}
     range: 0
-  - button: 1
+  - button: 2
     maxUsages: 2
     damage: 100
     castCoolDown:
       timeToWait: 150
     attackCoolDown:
-      timeToWait: 320
+      timeToWait: 364
     spawnCoolDown:
       timeToWait: 10
     prefab: {fileID: 3581026735708057378, guid: 53bd7ecdaae6e4c459795ab36997e84f, type: 3}
