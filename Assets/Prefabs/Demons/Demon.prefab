@@ -66,15 +66,15 @@ MonoBehaviour:
     attackMovementSound: {fileID: 0}
     range: 0
   - button: 1
-    maxUsages: 2
+    maxUsages: -1
     damage: 100
     castCoolDown:
-      timeToWait: 150
+      timeToWait: 85
     attackCoolDown:
       timeToWait: 200
     spawnCoolDown:
       timeToWait: 10
-    prefab: {fileID: 3581026735708057378, guid: 53bd7ecdaae6e4c459795ab36997e84f, type: 3}
+    prefab: {fileID: 3581026735708057378, guid: 74144f9e2c9fd3c4cbccf1ef0f4ed8bc, type: 3}
     attackType: 1
     attackMovementSound: {fileID: 0}
     range: 3
