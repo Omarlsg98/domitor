@@ -42,7 +42,7 @@ public class AI : MonoBehaviour
             Demon newDemon = demonGameObject.GetComponent<Demon>();
             newDemon.setup(false, grid, newPosition, mainController.difficultyFactor);
 
-            AIInstance fullNewDemon = new AIStalker(newDemon, mainController.player);
+            AIInstance fullNewDemon = AIInstance.getRandomInstance(newDemon, mainController.player);
             demons.Add(fullNewDemon);
         }
     }

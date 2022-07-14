@@ -1,18 +1,38 @@
 using UnityEngine;
 using static Demon;
 
+
 public enum AIType
 {
-    Persecutor,
+    Stalker,
     Turret,
-    Bombard
+    Bombardier
 } 
+
 
 public abstract class AIInstance{
     public Demon demon;
     public Demon player;
 
     protected int prevMovementResult;
+
+    public static AIInstance getRandomInstance(Demon demon, Demon player){
+        AIType randomAIType = (AIType)Random.Range(0, 3);
+        switch (randomAIType)
+        {
+            case AIType.Stalker: 
+            return new AIStalker(demon, player);
+
+            case AIType.Turret: 
+            return new AITurret(demon, player);
+
+            case AIType.Bombardier: 
+            return new AIBombardier(demon, player);
+
+            default: 
+            return null;
+        }
+    }
 
     public AIInstance(Demon demon, Demon player){
         this.demon = demon;
@@ -40,7 +60,23 @@ public abstract class AIInstance{
     protected int getVerticallDiff(){
         return player.actPosition.y - demon.actPosition.y;
     }
+
+    protected int getHorizontalDiff(){
+        return demon.actPosition.x - player.actPosition.x;
+    }
+
+    protected int getVerticalFollowCommand(){
+        int verticalDiff = getVerticallDiff();
+        if(verticalDiff == 0){
+            return 0;
+        }else if (verticalDiff > 0){
+            return 1;
+        }else {
+            return -1;
+        } 
+    }
 }
+
 
 public class AIStalker : AIInstance
 {
@@ -49,13 +85,7 @@ public class AIStalker : AIInstance
     protected override (int horizontalAxis, int verticalAxis) getAxis(){
         (int horizontalAxis, int verticalAxis) = (0, 0);
         int verticalDiff = getVerticallDiff();
-        if(verticalDiff == 0){
-            verticalAxis = 0;
-        }else if (verticalDiff > 0){
-            verticalAxis = 1;
-        }else {
-            verticalAxis = -1;
-        }
+        verticalAxis = getVerticalFollowCommand();
 
         if(prevMovementResult == 0){
             horizontalAxis = Random.Range(-1, 2);
@@ -67,6 +97,54 @@ public class AIStalker : AIInstance
     protected override AttackButton getAttackButton(){
         if(getVerticallDiff() == 0){
             return AttackButton.Attack1;
+        }
+        return AttackButton.None;
+    }
+}
+
+
+public class AITurret : AIInstance
+{
+    public AITurret(Demon demon, Demon player) : base(demon, player) {}
+
+    protected override (int horizontalAxis, int verticalAxis) getAxis(){
+        (int horizontalAxis, int verticalAxis) = (0, 0);
+        return (horizontalAxis, verticalAxis);
+    }
+
+    protected override AttackButton getAttackButton(){
+        if(getVerticallDiff() == 0){
+            return AttackButton.Attack1;
+        }
+        return AttackButton.None;
+    }
+}
+
+
+public class AIBombardier : AIInstance
+{
+    public AIBombardier(Demon demon, Demon player) : base(demon, player) {}
+
+    protected override (int horizontalAxis, int verticalAxis) getAxis(){
+        (int horizontalAxis, int verticalAxis) = (0, 0);
+
+        verticalAxis = getVerticalFollowCommand();
+
+        int horizontalDiff = getHorizontalDiff();
+        if (horizontalDiff == 3){
+            horizontalAxis = 0;
+        }else if (horizontalDiff > 3){
+            horizontalAxis = -1;
+        }else{
+            horizontalAxis = 1;
+        }
+
+        return (horizontalAxis, verticalAxis);
+    }
+
+    protected override AttackButton getAttackButton(){
+        if(getVerticallDiff() == 0 && getHorizontalDiff() == 3){
+            return AttackButton.Attack2;
         }
         return AttackButton.None;
     }
