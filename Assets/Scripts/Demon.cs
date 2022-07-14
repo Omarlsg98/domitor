@@ -36,6 +36,7 @@ public class Demon : MonoBehaviour
     {
         this.grid = grid;
         this.isPlayer = isPlayer;
+        grid.getTile(actPosition).isEmpty = false;
         this.actPosition = actPosition; 
     }
 
@@ -56,6 +57,8 @@ public class Demon : MonoBehaviour
             }
             if (newPosition != null){
                 if (grid.verifyPosition(newPosition, true)){
+                    grid.getTile(actPosition).isEmpty = true;
+                    grid.getTile(newPosition).isEmpty = false;
                     this.actPosition = newPosition;
                     gameObject.transform.position = grid.getTilePosition(newPosition);
                     movementCoolDown.turnOnCooldown();

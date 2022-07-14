@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
         GameObject demonGameObject = Instantiate(demonPrefab, grid.getTilePosition(newPosition), Quaternion.identity);
         demon = demonGameObject.GetComponent<Demon>();
         demon.setup(true, grid, newPosition);
+        
+        mainController.player = demon;
     }
 
     // Update is called once per frame

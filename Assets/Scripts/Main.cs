@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using static Grid; 
+using static Demon;
 
 public class Main : MonoBehaviour
 {
@@ -13,6 +15,9 @@ public class Main : MonoBehaviour
     public float gridStep = 1.5f;
     public GameObject playerTilePrefab;
     public GameObject enemyTilePrefab;
+
+    public Demon player {get; set;}
+    public AI AIController {get; set;}
 
     // Start is called before the first frame update
     void Awake()
