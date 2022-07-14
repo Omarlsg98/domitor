@@ -50,13 +50,13 @@ MonoBehaviour:
   soundController:
     damageAudio: {fileID: 8300000, guid: 4d1a7acc895a84448be4481beaab0ee4, type: 3}
     movementAudio: {fileID: 8300000, guid: 35be27ddfac5ac54593256a3f483dbe0, type: 3}
-    attackAudio: {fileID: 8300000, guid: 164be4cd463c9a640bc681c41526287f, type: 3}
+    attackAudio: {fileID: 8300000, guid: f41d260c18efd324ca0b4a4308c66696, type: 3}
   availableAttacks:
   - button: 1
     maxUsages: -1
     damage: 40
     castCoolDown:
-      timeToWait: 0.5
+      timeToWait: 0.4
     attackCoolDown:
       timeToWait: 1
     spawnCoolDown:
@@ -69,12 +69,12 @@ MonoBehaviour:
     maxUsages: -1
     damage: 100
     castCoolDown:
-      timeToWait: 0.5
+      timeToWait: 0.4
     attackCoolDown:
-      timeToWait: 7
+      timeToWait: 3
     spawnCoolDown:
       timeToWait: 1
-    prefab: {fileID: 3581026735708057378, guid: 53bd7ecdaae6e4c459795ab36997e84f, type: 3}
+    prefab: {fileID: 3581026735708057378, guid: 74144f9e2c9fd3c4cbccf1ef0f4ed8bc, type: 3}
     attackType: 1
     attackMovementSound: {fileID: 0}
     range: 3

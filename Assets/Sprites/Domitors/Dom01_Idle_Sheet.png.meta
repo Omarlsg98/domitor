@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 75f6a750fce63c9408d03ea2ff4e8873
+guid: aebdcfa11b4b5b041a2ff60de88b6e83
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,9 +36,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -128,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: E_Dem01_Idle_sheet_0
+      name: Dom01_Idle_Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2fc6924a32d558547b3dd272870eb003
-      internalID: -783079806
+      spriteID: f955ac8e1672d3249a818f0818d67e67
+      internalID: 1429081734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_Dem01_Idle_sheet_1
+      name: Dom01_Idle_Sheet_1
       rect:
         serializedVersion: 2
         x: 100
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df2a9bca4675f9e48b28a6d8fe5e2b3d
-      internalID: 1717066178
+      spriteID: 89b14407fbc24aa4cbf145d3faf18b4f
+      internalID: 329614612
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: E_Dem01_Idle_sheet_2
+      name: Dom01_Idle_Sheet_2
       rect:
         serializedVersion: 2
         x: 200
@@ -184,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1350b29f010dd5f4f894ade1b298a44c
-      internalID: 99957349
+      spriteID: ce644884420533342a44d875339d8aac
+      internalID: -1370150495
       vertices: []
       indices: 
       edges: []
@@ -201,9 +201,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      E_Dem01_Idle_sheet_0: -783079806
-      E_Dem01_Idle_sheet_1: 1717066178
-      E_Dem01_Idle_sheet_2: 99957349
+      Dom01_Idle_Sheet_0: 1429081734
+      Dom01_Idle_Sheet_2: -1370150495
+      Dom01_Idle_Sheet_1: 329614612
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
