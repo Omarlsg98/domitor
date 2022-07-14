@@ -25,6 +25,7 @@ public class AttackConfig {
     public AttackButton button;
 
     public int damage = 10;
+    public CoolDown castCoolDown;
     public CoolDown attackCoolDown;
     public CoolDown spawnCoolDown;
     public GameObject prefab;
@@ -74,15 +75,19 @@ public abstract class SimpleAttack : Attack
         this.damage = atcConfig.damage;
         this.atcConfig = atcConfig;
         this.step = 0;
+        atcConfig.castCoolDown.turnOnCooldown();
     }
 
     public override bool execute(){
-        atcConfig.spawnCoolDown.updateCoolDown();
-        if (atcConfig.spawnCoolDown.isReady()){
-            List<DiscreteCoordinate> attacksCoords = attackCoordinatesGenerator(this.step);
-            spawnAttacks(attacksCoords);
-            atcConfig.spawnCoolDown.turnOnCooldown();
-            this.step += 1;
+        atcConfig.castCoolDown.updateCoolDown();
+        if (atcConfig.castCoolDown.isReady()){
+            atcConfig.spawnCoolDown.updateCoolDown();
+            if (atcConfig.spawnCoolDown.isReady()){
+                List<DiscreteCoordinate> attacksCoords = attackCoordinatesGenerator(this.step);
+                spawnAttacks(attacksCoords);
+                atcConfig.spawnCoolDown.turnOnCooldown();
+                this.step += 1;
+            }
         }
         return this.isFinished;
     }
@@ -91,7 +96,7 @@ public abstract class SimpleAttack : Attack
         foreach(DiscreteCoordinate coord in coords){
             GameObject attack = ScriptableObject.Instantiate(prefab, grid.getTile(coord).getTransform());
             attack.GetComponent<AttackInstance>().actPosition = coord;
-            attack.GetComponent<AttackInstance>().damage = damage;
+            attack.GetComponent<AttackInstance>().setDamage(damage);
         }
     }
 

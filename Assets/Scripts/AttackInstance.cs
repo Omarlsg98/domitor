@@ -7,11 +7,12 @@ using static DiscreteCoordinate;
 public class AttackInstance : MonoBehaviour
 {
     public DiscreteCoordinate actPosition;
-    public int damage;
 
     public int timeToDisappear = 10;
     public bool destroyOnHit = true;
 
+    private int damage;
+    
     void Update()
     {
         if (actPosition == null) {
@@ -24,6 +25,10 @@ public class AttackInstance : MonoBehaviour
         if (timeToDisappear <= 0){
             Destroy(gameObject);
         }
+    }
+
+    public void setDamage(int damage){
+        this.damage = damage;
     }
 
     private void checkHitWithDemons(){

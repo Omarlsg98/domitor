@@ -54,6 +54,8 @@ MonoBehaviour:
   availableAttacks:
   - button: 0
     damage: 40
+    castCoolDown:
+      timeToWait: 150
     attackCoolDown:
       timeToWait: 120
     spawnCoolDown:
@@ -64,6 +66,8 @@ MonoBehaviour:
     range: 0
   - button: 1
     damage: 100
+    castCoolDown:
+      timeToWait: 150
     attackCoolDown:
       timeToWait: 200
     spawnCoolDown:
