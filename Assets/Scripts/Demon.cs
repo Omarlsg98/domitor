@@ -78,9 +78,10 @@ public class Demon : MonoBehaviour
     
     public void attack(AttackButton selector){
         AttackConfig atcConfig = getAttackConfig(selector);
-        if (atcConfig.attackCoolDown.isReady()){
+        if (atcConfig.attackCoolDown.isReady() && atcConfig.isUsable()){
             soundController.reproduceAttack();
             animateAttack();
+            atcConfig.addUsage();
             Attack attack = Attack.getAttackInstance(isPlayer, actPosition, grid, atcConfig);
             attacksInProgress.Add(attack);
             atcConfig.attackCoolDown.turnOnCooldown();

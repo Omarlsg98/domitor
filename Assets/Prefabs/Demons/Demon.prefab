@@ -53,6 +53,7 @@ MonoBehaviour:
     attackAudio: {fileID: 8300000, guid: 164be4cd463c9a640bc681c41526287f, type: 3}
   availableAttacks:
   - button: 0
+    maxUsages: -1
     damage: 40
     castCoolDown:
       timeToWait: 150
@@ -65,6 +66,7 @@ MonoBehaviour:
     attackMovementSound: {fileID: 0}
     range: 0
   - button: 1
+    maxUsages: 2
     damage: 100
     castCoolDown:
       timeToWait: 150

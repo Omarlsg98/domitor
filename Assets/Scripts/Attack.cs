@@ -24,6 +24,7 @@ public enum AttackButton
 public class AttackConfig {
     public AttackButton button;
 
+    public int maxUsages = -1;
     public int damage = 10;
     public CoolDown castCoolDown;
     public CoolDown attackCoolDown;
@@ -34,6 +35,15 @@ public class AttackConfig {
     public AudioClip attackMovementSound;
 
     public int range;
+    private int usages = 0;
+
+    public void addUsage(){
+        usages += 1;
+    }
+
+    public bool isUsable(){
+        return maxUsages == -1 || usages < maxUsages;
+    }
 }
 
 public abstract class Attack
