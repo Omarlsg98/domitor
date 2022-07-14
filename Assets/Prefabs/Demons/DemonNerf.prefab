@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4953625070631494639
+--- !u!1 &3239139607822790855
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,45 +8,45 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4953625070631494638}
-  - component: {fileID: 8952287706809802575}
-  - component: {fileID: 1396042013755467733}
+  - component: {fileID: 3239139607822790854}
+  - component: {fileID: 1473127545731271783}
+  - component: {fileID: 8868378623077463293}
   m_Layer: 0
-  m_Name: Demon
+  m_Name: DemonNerf
   m_TagString: Demon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4953625070631494638
+--- !u!4 &3239139607822790854
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4953625070631494639}
+  m_GameObject: {fileID: 3239139607822790855}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3, y: -1, z: 0}
+  m_LocalPosition: {x: -3.8105597, y: -1.1743262, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4953625071096108827}
+  - {fileID: 3239139608297882675}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8952287706809802575
+--- !u!114 &1473127545731271783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4953625070631494639}
+  m_GameObject: {fileID: 3239139607822790855}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 289e0ed10a30e1f4e9d5f63f726f6acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 200
+  maxLife: 100
   soundController:
     damageAudio:
       audio: {fileID: 8300000, guid: 4d1a7acc895a84448be4481beaab0ee4, type: 3}
@@ -64,9 +64,9 @@ MonoBehaviour:
     castCoolDown:
       timeToWait: 0.4
     attackCoolDown:
-      timeToWait: 0.5
+      timeToWait: 2
     spawnCoolDown:
-      timeToWait: 0.2
+      timeToWait: 0.5
     prefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
     attackType: 0
     attackMovementSound: {fileID: 0}
@@ -77,7 +77,7 @@ MonoBehaviour:
     castCoolDown:
       timeToWait: 0.4
     attackCoolDown:
-      timeToWait: 2.5
+      timeToWait: 5
     spawnCoolDown:
       timeToWait: 0
     prefab: {fileID: 3581026735708057378, guid: 74144f9e2c9fd3c4cbccf1ef0f4ed8bc, type: 3}
@@ -85,14 +85,14 @@ MonoBehaviour:
     attackMovementSound: {fileID: 0}
     range: 3
   movementCoolDown:
-    timeToWait: 0.2
---- !u!82 &1396042013755467733
+    timeToWait: 0.7
+--- !u!82 &8868378623077463293
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4953625070631494639}
+  m_GameObject: {fileID: 3239139607822790855}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -182,7 +182,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &4953625071096108824
+--- !u!1 &3239139608297882672
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,9 +190,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4953625071096108827}
-  - component: {fileID: 4953625071096108826}
-  - component: {fileID: 3413865814537323282}
+  - component: {fileID: 3239139608297882675}
+  - component: {fileID: 3239139608297882674}
+  - component: {fileID: 5128772389752115258}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -200,28 +200,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4953625071096108827
+--- !u!4 &3239139608297882675
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4953625071096108824}
+  m_GameObject: {fileID: 3239139608297882672}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4953625070631494638}
+  m_Father: {fileID: 3239139607822790854}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &4953625071096108826
+--- !u!212 &3239139608297882674
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4953625071096108824}
+  m_GameObject: {fileID: 3239139608297882672}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -267,14 +267,14 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &3413865814537323282
+--- !u!95 &5128772389752115258
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4953625071096108824}
+  m_GameObject: {fileID: 3239139608297882672}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: f639f8ff848d802418f2eecf39d265ef, type: 2}

@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9b7865f4b3cb644595af18e0cd26750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  demonPrefab: {fileID: 4953625070631494639, guid: ba9519df11902f4439f0e6542754a4e3, type: 3}
+  demonPrefab: {fileID: 3239139607822790855, guid: ec846a3a6fab6d14ba2f10f15cafd383, type: 3}
   maxDemons: 3
   demonSpawnProbability: 0.00051
 --- !u!212 &1832724132
