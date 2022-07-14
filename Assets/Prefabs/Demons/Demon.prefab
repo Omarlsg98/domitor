@@ -48,9 +48,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 100
   soundController:
-    damageAudio: {fileID: 8300000, guid: 4d1a7acc895a84448be4481beaab0ee4, type: 3}
-    movementAudio: {fileID: 8300000, guid: 35be27ddfac5ac54593256a3f483dbe0, type: 3}
-    attackAudio: {fileID: 8300000, guid: f41d260c18efd324ca0b4a4308c66696, type: 3}
+    damageAudio:
+      audio: {fileID: 8300000, guid: 4d1a7acc895a84448be4481beaab0ee4, type: 3}
+      secondsToWait: 0
+    movementAudio:
+      audio: {fileID: 8300000, guid: 35be27ddfac5ac54593256a3f483dbe0, type: 3}
+      secondsToWait: 0
+    attackAudio:
+      audio: {fileID: 8300000, guid: f41d260c18efd324ca0b4a4308c66696, type: 3}
+      secondsToWait: 0
   availableAttacks:
   - button: 1
     maxUsages: -1
