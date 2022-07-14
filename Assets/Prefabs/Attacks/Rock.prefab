@@ -99,5 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageCoolDown:
     timeToWait: 10
+  preDamageCoolDown:
+    timeToWait: 300
   timeToDisappear: 10
   destroyOnHit: 1
