@@ -100,7 +100,7 @@ MonoBehaviour:
   damageCoolDown:
     timeToWait: 10
   preDamageCoolDown:
-    timeToWait: 0.1
+    timeToWait: 0
   timeToDisappear:
-    timeToWait: 0.2
+    timeToWait: 0.1
   destroyOnHit: 1
