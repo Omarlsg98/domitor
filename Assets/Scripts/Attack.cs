@@ -123,7 +123,7 @@ public class RowAttack : SimpleAttack
     protected override List<DiscreteCoordinate> attackCoordinatesGenerator(int step){
         List<DiscreteCoordinate> result = new List<DiscreteCoordinate>();
         int horizontalGridSize = grid.getHorizontalSize(actPosition.y);
-        int enemyStartX = grid.getEnemyStartX(actPosition.y);
+        int enemyStartX = grid.getEnemyStartX();
         int i = enemyStartX + step;
         if (i < horizontalGridSize){
             int new_x = isPlayer? i : (enemyStartX - i);
@@ -146,7 +146,7 @@ public class RangeAttack : SimpleAttack
     protected override List<DiscreteCoordinate> attackCoordinatesGenerator(int step){
         List<DiscreteCoordinate> result = new List<DiscreteCoordinate>();
         int horizontalGridSize = grid.getHorizontalSize(actPosition.y);
-        int enemyStartX = grid.getEnemyStartX(actPosition.y);
+        int enemyStartX = grid.getEnemyStartX();
     
         int new_x = isPlayer? actPosition.x + atcConfig.range : actPosition.x - atcConfig.range;
         DiscreteCoordinate coord = new DiscreteCoordinate(actPosition.y, new_x);

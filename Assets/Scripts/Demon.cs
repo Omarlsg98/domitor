@@ -11,7 +11,7 @@ using static DemonSoundController;
 public class Demon : MonoBehaviour
 {
     public int maxLife = 100;
-    private int actualLife = 100;
+    private int actualLife;
 
     public DemonSoundController soundController;
     public List<AttackConfig> availableAttacks;
@@ -30,6 +30,7 @@ public class Demon : MonoBehaviour
 
         audioSource = gameObject.GetComponent<AudioSource>();
         soundController.setAudioSource(audioSource);
+        actualLife = maxLife;
     }
     
     public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition)
@@ -38,6 +39,7 @@ public class Demon : MonoBehaviour
         this.isPlayer = isPlayer;
         grid.getTile(actPosition).isEmpty = false;
         this.actPosition = actPosition; 
+        actualLife = maxLife;
     }
 
     void Update(){
@@ -56,7 +58,7 @@ public class Demon : MonoBehaviour
                 newPosition =  new DiscreteCoordinate(actPosition.y + verticalAxis, actPosition.x);
             }
             if (newPosition != null){
-                if (grid.verifyPosition(newPosition, true)){
+                if (grid.verifyPosition(newPosition, isPlayer)){
                     grid.getTile(actPosition).isEmpty = true;
                     grid.getTile(newPosition).isEmpty = false;
                     this.actPosition = newPosition;
@@ -74,9 +76,14 @@ public class Demon : MonoBehaviour
         this.actualLife -= damage;
         soundController.reproduceDamage();
         animateDamage();
-        if (this.actualLife <= 0){
+        if (!isAlive()){
+            grid.getTile(actPosition).isEmpty = true;
             Destroy(gameObject);
         }
+    }
+
+    public bool isAlive(){
+        return this.actualLife > 0;
     }
     
     public void attack(AttackButton selector){

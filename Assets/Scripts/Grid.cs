@@ -82,7 +82,30 @@ public class Grid
         return grid.Count;
     }
 
-    public int getEnemyStartX(int y){
+    public int getEnemyStartX(){
         return ((int)grid[0].Count/2);
+    }
+
+    public DiscreteCoordinate generateRandomCoordinate(bool inPlayerSide, bool mustBeEmptyTile){
+        DiscreteCoordinate newPosition = new DiscreteCoordinate(-1, -1);
+        
+        int sanityCount = 0;
+        while (!verifyPosition(newPosition, inPlayerSide)){
+            newPosition = MyRandom.randomCoordinate(0, getEnemyStartX(), 0, getVerticalSize());
+            if (!inPlayerSide){
+                newPosition.x += getEnemyStartX();
+            }
+            if (!mustBeEmptyTile){
+                return newPosition;
+            }
+            
+            sanityCount += 1;
+            if (sanityCount > 10000){
+                return null;
+            }
+        }
+
+        return newPosition;
+        
     }
 }
