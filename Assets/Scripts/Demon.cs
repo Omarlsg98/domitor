@@ -31,6 +31,9 @@ public class Demon : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         soundController.setAudioSource(audioSource);
         actualLife = maxLife;
+        if (isPlayer){
+            capsuleChild.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
     
     public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition)
