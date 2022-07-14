@@ -84,6 +84,19 @@ MonoBehaviour:
     attackType: 1
     attackMovementSound: {fileID: 0}
     range: 3
+  - button: 3
+    maxUsages: -1
+    damage: 30
+    castCoolDown:
+      timeToWait: 0.4
+    attackCoolDown:
+      timeToWait: 0.5
+    spawnCoolDown:
+      timeToWait: 0.2
+    prefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
+    attackType: 2
+    attackMovementSound: {fileID: 0}
+    range: 3
   movementCoolDown:
     timeToWait: 0.2
 --- !u!82 &1396042013755467733

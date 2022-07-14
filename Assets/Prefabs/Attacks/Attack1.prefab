@@ -98,12 +98,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   continuousDamageCoolDown:
-    timeToWait: 0
+    timeToWait: 10
   preDamageCoolDown:
     timeToWait: 0
   timeToDisappear:
-    timeToWait: 0.1
-  destroyOnHit: 1
+    timeToWait: 0.2
+  destroyOnHit: 0
   soundController:
     attackSounds:
     - audio: {fileID: 8300000, guid: 50e3c26d4b6d3c043bf6c476d55f5da4, type: 3}

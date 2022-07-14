@@ -9,7 +9,8 @@ using static CoolDown;
 public enum AttackType
 {
     RowAttack,
-    RangeAttack
+    RangeAttack,
+    ColumnAttack
 }
 
 public enum AttackButton
@@ -60,6 +61,9 @@ public abstract class Attack
 
             case AttackType.RangeAttack: 
             return new RangeAttack(isPlayer, actPosition, grid, atcConfig);
+
+            case AttackType.ColumnAttack: 
+            return new ColumnAttack(isPlayer, actPosition, grid, atcConfig);
 
             default: 
             return null;
@@ -137,6 +141,7 @@ public class RowAttack : SimpleAttack
     }
 }
 
+
 public class RangeAttack : SimpleAttack
 {
     public RangeAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, AttackConfig atcConfig) :
@@ -154,6 +159,33 @@ public class RangeAttack : SimpleAttack
         result.Add(coord);
         this.isFinished = true; 
     
+        return result;
+    }
+}
+
+public class ColumnAttack : SimpleAttack
+{
+    public ColumnAttack(bool isPlayer, DiscreteCoordinate actPosition, Grid grid, AttackConfig atcConfig) :
+                 base(isPlayer, actPosition, grid, atcConfig)    
+    {
+    }
+
+    protected override List<DiscreteCoordinate> attackCoordinatesGenerator(int step){
+        List<DiscreteCoordinate> result = new List<DiscreteCoordinate>();
+        if (step < 2){
+            int new_x = isPlayer? actPosition.x + atcConfig.range : actPosition.x - atcConfig.range;
+            if(step == 0){
+                DiscreteCoordinate coord = new DiscreteCoordinate(0, new_x);
+                result.Add(coord);
+                coord = new DiscreteCoordinate(2, new_x);
+                result.Add(coord);
+            }else {
+                DiscreteCoordinate coord = new DiscreteCoordinate(1, new_x);
+                result.Add(coord);
+            }
+        } else {
+            this.isFinished = true; 
+        }
         return result;
     }
 }
