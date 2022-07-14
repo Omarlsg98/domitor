@@ -243,6 +243,14 @@ MonoBehaviour:
   timeToDisappear:
     timeToWait: 0.3
   destroyOnHit: 0
+  soundController:
+    attackSounds:
+    - audio: {fileID: 8300000, guid: a74d6f9b90c74014980027e984e20ee0, type: 3}
+      secondsToWait: 0.8
+    - audio: {fileID: 8300000, guid: 4ce9a6da6198ba842b4853951a59b809, type: 3}
+      secondsToWait: 0.8
+    - audio: {fileID: 8300000, guid: c52557bceeffb72459656fc20a533853, type: 3}
+      secondsToWait: 0.8
 --- !u!1 &4964922986630239692
 GameObject:
   m_ObjectHideFlags: 0
