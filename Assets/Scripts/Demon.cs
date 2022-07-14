@@ -31,6 +31,9 @@ public class Demon : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         soundController.setAudioSource(audioSource);
         actualLife = maxLife;
+        if (isPlayer){
+            capsuleChild.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
     
     public void setup(bool isPlayer, Grid grid, DiscreteCoordinate actPosition)
@@ -47,7 +50,7 @@ public class Demon : MonoBehaviour
         executeAllAttacksInProgress();
     }
 
-    public void updatePosition(int horizontalAxis, int verticalAxis)
+    public int updatePosition(int horizontalAxis, int verticalAxis)
     {
         if (movementCoolDown.isReady()){     
             DiscreteCoordinate newPosition = null;
@@ -65,11 +68,15 @@ public class Demon : MonoBehaviour
                     gameObject.transform.position = grid.getTilePosition(newPosition);
                     movementCoolDown.turnOnCooldown();
                     soundController.reproduceMovement();
+                    return 1;
+                }else {
+                    return 0;
                 }
             }
         } else {
             movementCoolDown.updateCoolDown();
         }
+        return -1;
     }
 
     public void applyHit(int damage){

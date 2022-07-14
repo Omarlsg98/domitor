@@ -14,6 +14,7 @@ public enum AttackType
 
 public enum AttackButton
 {
+    None,
     Attack1,
     Attack2,
     Attack3,
@@ -126,7 +127,7 @@ public class RowAttack : SimpleAttack
         int enemyStartX = grid.getEnemyStartX();
         int i = enemyStartX + step;
         if (i < horizontalGridSize){
-            int new_x = isPlayer? i : (enemyStartX - i);
+            int new_x = isPlayer? i : (horizontalGridSize - i - 1);
             DiscreteCoordinate coord = new DiscreteCoordinate(actPosition.y, new_x);
             result.Add(coord);
         } else {

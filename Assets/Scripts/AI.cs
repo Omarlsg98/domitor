@@ -32,6 +32,7 @@ public class AI : MonoBehaviour
             spawnDemon();
         }
         updateDemonList();
+        callDemonMethods();
     }
 
     private void spawnDemon(){
@@ -41,7 +42,7 @@ public class AI : MonoBehaviour
             Demon newDemon = demonGameObject.GetComponent<Demon>();
             newDemon.setup(false, grid, newPosition);
 
-            AIPersecutor fullNewDemon = new AIPersecutor(newDemon);
+            AIInstance fullNewDemon = new AIStalker(newDemon, mainController.player);
             demons.Add(fullNewDemon);
         }
     }
@@ -60,6 +61,13 @@ public class AI : MonoBehaviour
         }
         foreach(int index in toDelete){
             demons.RemoveAt(index);
+        }
+    }
+
+    private void callDemonMethods(){
+        foreach(AIInstance instance in demons){
+            instance.Movement();
+            instance.Attack();
         }
     }
 }
