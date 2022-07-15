@@ -9,27 +9,28 @@ public class Grid
 {   
     private List<List<GridTile>> grid;
 
-    public Grid(int horizontal_size, int vertical_size, float min_x, float min_y, 
-                float step, GameObject playerTilePrefab, GameObject enemyTilePrefab)
+    public Grid(int horizontal_size, float min_x, float min_y, float horizontalStep,
+                float verticalStep, List<GameObject> playerTilesPrefab, List<GameObject> enemyTilesPrefab)
     {
         grid = new List<List<GridTile>>();
+        int vertical_size = playerTilesPrefab.Count;
 
         for (int j = 0; j < vertical_size; j++) 
         {
             List<GridTile> row_grid = new List<GridTile>();
-            float current_y = min_y + (step * j);
+            float current_y = min_y + (verticalStep * j);
             
             for (int i = 0; i < horizontal_size; i++) 
             {
-                float current_x = min_x + (step * i);
+                float current_x = min_x + (horizontalStep * i);
                 Vector3 tile_position = new Vector3(current_x, current_y, 0.0f);
                 bool isPlayerTile =  i < horizontal_size/2;
                 
                 GameObject prefab;
                 if (isPlayerTile){
-                    prefab = playerTilePrefab;
+                    prefab = playerTilesPrefab[j];
                 } else {
-                    prefab = enemyTilePrefab;
+                    prefab = enemyTilesPrefab[j];
                 }
                 DiscreteCoordinate positionInGrid = new DiscreteCoordinate(j, i);
                 GridTile tile = new GridTile(prefab, tile_position, isPlayerTile, positionInGrid);

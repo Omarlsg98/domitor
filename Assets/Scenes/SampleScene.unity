@@ -277,7 +277,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.2
+  orthographic size: 2.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -301,7 +301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.3, z: -1}
+  m_LocalPosition: {x: 1.18, y: 0.3, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -411,7 +411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -312, y: -67}
+  m_AnchoredPosition: {x: -351.2, y: -60.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617981895
@@ -709,12 +709,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   difficultyFactor: 0.5
   gridHorizontal: 6
-  gridVertical: 3
   gridMinX: -3
   gridMinY: -1
-  gridStep: 1.2
-  playerTilePrefab: {fileID: 6487471540204908016, guid: c6cdae4c5752d87469e868905215d1fe, type: 3}
-  enemyTilePrefab: {fileID: 2178444279794039846, guid: be31e8d45f3a38240b414a9b41ffee13, type: 3}
+  gridHorizontalStep: 2
+  gridVerticalStep: 1.1
+  playerTilesPrefab:
+  - {fileID: 8527931506924388170, guid: 6f9539a1d6aae5c48984b88c07eeb353, type: 3}
+  - {fileID: 9221477093214169433, guid: cb755be64250ec24ab509372aca8dd5c, type: 3}
+  - {fileID: 728513628706624088, guid: 7951ef15d7bde3e4fb63bd664da2539b, type: 3}
+  enemyTilesPrefab:
+  - {fileID: 7999599244011028218, guid: 9836e5f3ad976ec48b9fe630f2ad0cb6, type: 3}
+  - {fileID: 3490343728186325587, guid: 22cf742d90be6e24a87af34d306cc4fd, type: 3}
+  - {fileID: 4426318509434030693, guid: 514cdd307cc6fdc448b5049061aca683, type: 3}
   textKilled: {fileID: 1617981893}
 --- !u!4 &1843659235
 Transform:
