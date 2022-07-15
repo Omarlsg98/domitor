@@ -67,7 +67,7 @@ MonoBehaviour:
       timeToWait: 2
     spawnCoolDown:
       timeToWait: 0.5
-    prefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
+    prefab: {fileID: 8614056538812047161, guid: 46f3c84806d25bd4eb1423628c40f15c, type: 3}
     attackType: 0
     attackMovementSound: {fileID: 0}
     range: 0
@@ -93,7 +93,7 @@ MonoBehaviour:
       timeToWait: 3
     spawnCoolDown:
       timeToWait: 0.5
-    prefab: {fileID: 1224380281301232626, guid: 4797362faa06d62428258eff094e9d9d, type: 3}
+    prefab: {fileID: 8614056538812047161, guid: 46f3c84806d25bd4eb1423628c40f15c, type: 3}
     attackType: 2
     attackMovementSound: {fileID: 0}
     range: 3
