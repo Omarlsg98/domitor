@@ -20,6 +20,7 @@ public class Demon : MonoBehaviour
     
     private AudioSource audioSource;
     private Animator animator;
+    private Animator domAnimator;
     private SpriteRenderer spriteRenderer;
     private Grid grid;
     private List<Attack> attacksInProgress = new List<Attack>();
@@ -28,8 +29,11 @@ public class Demon : MonoBehaviour
 
     void Start(){
         GameObject capsuleChild = gameObject.transform.GetChild(0).gameObject;
-        animator = capsuleChild.GetComponent<Animator>();
-        spriteRenderer = capsuleChild.GetComponent<SpriteRenderer>(); 
+        animator = capsuleChild.GetComponent<Animator>();        
+        spriteRenderer = capsuleChild.GetComponent<SpriteRenderer>();
+
+        //Chamboneo para encontrar al Domitor usando el tag de Player
+        domAnimator = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Animator>();   
 
         audioSource = gameObject.GetComponent<AudioSource>();
         soundController.setAudioSource(audioSource);
@@ -140,10 +144,13 @@ public class Demon : MonoBehaviour
     }
 
     private void animateAttack(){
+        if(isPlayer){domAnimator.SetTrigger("Attack01");} 
         animator.SetTrigger("Attack01");
     }
 
     private void animateDamage(){
+        if(isPlayer){domAnimator.SetTrigger("Hurt");} 
         animator.SetTrigger("Hurt");
+        
     }
 }
