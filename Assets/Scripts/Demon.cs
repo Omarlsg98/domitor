@@ -20,6 +20,7 @@ public class Demon : MonoBehaviour
     
     private AudioSource audioSource;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private Grid grid;
     private List<Attack> attacksInProgress = new List<Attack>();
     private bool isPlayer;
@@ -28,6 +29,7 @@ public class Demon : MonoBehaviour
     void Start(){
         GameObject capsuleChild = gameObject.transform.GetChild(0).gameObject;
         animator = capsuleChild.GetComponent<Animator>();
+        spriteRenderer = capsuleChild.GetComponent<SpriteRenderer>(); 
 
         audioSource = gameObject.GetComponent<AudioSource>();
         soundController.setAudioSource(audioSource);
@@ -82,6 +84,8 @@ public class Demon : MonoBehaviour
 
     public void applyHit(int damage){
         this.actualLife -= isPlayer? (int) (damage * difficultyFactor) : damage;
+        float lifePercentage = (float)this.actualLife/this.maxLife;
+        spriteRenderer.material.color = new Color(1.0f, lifePercentage, lifePercentage);
         soundController.reproduceDamage();
         animateDamage();
         if (!isAlive()){

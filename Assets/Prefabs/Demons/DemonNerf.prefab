@@ -93,7 +93,7 @@ MonoBehaviour:
       timeToWait: 3
     spawnCoolDown:
       timeToWait: 0.5
-    prefab: {fileID: 8614056538812047161, guid: 46f3c84806d25bd4eb1423628c40f15c, type: 3}
+    prefab: {fileID: 3164036461071503673, guid: 3561846fe2ad2504bbde869058935745, type: 3}
     attackType: 2
     attackMovementSound: {fileID: 0}
     range: 3
