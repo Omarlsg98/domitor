@@ -61,6 +61,7 @@ public class AI : MonoBehaviour
         }
         foreach(int index in toDelete){
             demons.RemoveAt(index);
+            mainController.increaseDemonsKilled();
         }
     }
 

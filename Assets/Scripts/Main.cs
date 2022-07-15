@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 using static Grid; 
 using static Demon;
@@ -19,6 +20,9 @@ public class Main : MonoBehaviour
 
     public Demon player {get; set;}
     public AI AIController {get; set;}
+    public GameObject textKilled;
+
+    private int demonsKilled = 0;
 
     // Start is called before the first frame update
     void Awake()
@@ -30,5 +34,10 @@ public class Main : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void increaseDemonsKilled(){
+        demonsKilled += 1;
+        textKilled.GetComponent<TextMeshProUGUI>().text = "Killed: " +demonsKilled;
     }
 }
