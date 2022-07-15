@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1429081734, guid: aebdcfa11b4b5b041a2ff60de88b6e83, type: 3}
+  m_Sprite: {fileID: -2142583588, guid: 875523f345fc4f84aa4ae89201e5b1b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 4321764698408377051}
   m_Layer: 0
   m_Name: Dom01
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
